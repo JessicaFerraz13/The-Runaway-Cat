@@ -240,7 +240,7 @@ def main():
                     colisao.undraw()
                     Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
 
-                    Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
+                    Menino.move(-22 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
                     Centro_do_menino = Menino.getAnchor()
                     Menino.undraw()
                     Menino = Image(Centro_do_menino, 'sprite_9.png')
@@ -254,7 +254,7 @@ def main():
                 if posicao == True:
                     while Centro_do_menino.getY() < 440:
                         Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
-                        Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
+                        Menino.move(-22 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
                         Centro_do_menino = Menino.getAnchor()
                         Menino.undraw()
                         Menino = Image(Centro_do_menino, 'sprite_9.png')
@@ -263,7 +263,7 @@ def main():
                 else:
                     while Centro_do_menino.getY() < 520:
                         Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
-                        Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
+                        Menino.move(-22 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
                         Centro_do_menino = Menino.getAnchor()
                         Menino.undraw()
                         Menino = Image(Centro_do_menino, 'sprite_9.png')
@@ -321,9 +321,15 @@ def main():
                 colisao.draw(win)
 
                 if Proxima_Imagem_Colisao == 5:
-                    Menino.undraw()
-                    Menino = Image(Point(Centro_do_menino.getX(), Centro_do_menino.getY() + 10), 'sprite_6.png')
-                    Menino.draw(win)
+                    if posicao == True:
+                        Menino.undraw()
+                        Menino = Image(Point(Centro_do_menino.getX() + 30, 450), 'sprite_6.png')
+                        Menino.draw(win)
+
+                    else:
+                        Menino.undraw()
+                        Menino = Image(Point(Centro_do_menino.getX() + 30, 525), 'sprite_6.png')
+                        Menino.draw(win)
 
                 update(rate)
 
