@@ -240,7 +240,7 @@ def main():
                     colisao.undraw()
                     Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
 
-                    Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao * 1.5))
+                    Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
                     Centro_do_menino = Menino.getAnchor()
                     Menino.undraw()
                     Menino = Image(Centro_do_menino, 'sprite_9.png')
@@ -250,6 +250,25 @@ def main():
                     colisao.draw(win)
 
                     update(rate)
+
+                if posicao == True:
+                    while Centro_do_menino.getY() < 440:
+                        Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
+                        Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
+                        Centro_do_menino = Menino.getAnchor()
+                        Menino.undraw()
+                        Menino = Image(Centro_do_menino, 'sprite_9.png')
+                        Menino.draw(win)
+
+                else:
+                    while Centro_do_menino.getY() < 520:
+                        Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
+                        Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao))
+                        Centro_do_menino = Menino.getAnchor()
+                        Menino.undraw()
+                        Menino = Image(Centro_do_menino, 'sprite_9.png')
+                        Menino.draw(win)
+
 
                 Menino.undraw()
                 Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
