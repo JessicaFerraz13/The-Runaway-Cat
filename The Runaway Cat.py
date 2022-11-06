@@ -209,10 +209,10 @@ def main():
                 
             Posicao_no_fundo = Posicao_no_fundo + movimento
 
-            colidiu, numero_do_carro = Colisao(Centro_do_menino, Carros)
+            colidiu, objeto, posicao, numero_do_carro = Colisao(Centro_do_menino, Carros, Cones)
 
             if colidiu:
-                Menino = Animacao_colisao(Menino, Centro_do_menino, Colisoes, True)
+                Menino = Animacao_colisao(Menino, Centro_do_menino, Colisoes, objeto, posicao, True)
 
                 tempo = 0
 
@@ -226,67 +226,93 @@ def main():
 
         return Proxima_Imagem, Fundo, Cones, Menino, Proxima_Imagem_Carro, Carros, Posicao_no_fundo
 
-    def Animacao_colisao(Menino, Centro_do_menino, Colisoes, pulando):
+    def Animacao_colisao(Menino, Centro_do_menino, Colisoes, objeto, posicao, pulando):
 
         Proxima_Imagem_Colisao = 0
 
-        if pulando == True:
-            colisao = Image(Point(Centro_do_menino.getX(), Centro_do_menino.getY() + 50), Colisoes[Proxima_Imagem_Colisao])
-            colisao.draw(win)
-            Centro_da_colisao = colisao.getAnchor()
+        if objeto == 'carro':
+            if pulando == True:
+                colisao = Image(Point(Centro_do_menino.getX(), Centro_do_menino.getY() + 50), Colisoes[Proxima_Imagem_Colisao])
+                colisao.draw(win)
+                Centro_da_colisao = colisao.getAnchor()
+
+                while Proxima_Imagem_Colisao < 11:
+                    colisao.undraw()
+                    Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
+
+                    Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao * 1.5))
+                    Centro_do_menino = Menino.getAnchor()
+                    Menino.undraw()
+                    Menino = Image(Centro_do_menino, 'sprite_9.png')
+                    Menino.draw(win)
+
+                    colisao = Image(Centro_da_colisao, Colisoes[Proxima_Imagem_Colisao])
+                    colisao.draw(win)
+
+                    update(rate)
+
+                Menino.undraw()
+                Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
+                Menino.draw(win)
+
+                colisao.undraw()
+
+            else:
+                colisao = Image(Point(Centro_do_menino.getX() + 20, Centro_do_menino.getY()), Colisoes[Proxima_Imagem_Colisao])
+                colisao.draw(win)
+                Centro_da_colisao = colisao.getAnchor()
+
+                while Proxima_Imagem_Colisao < 5:
+                    colisao.undraw()
+                    Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
+
+                    if Proxima_Imagem_Colisao == 5:
+                        if Menino_em_cima:
+                            Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
+                            Menino.draw(win)
+
+                        if not Menino_em_cima: 
+                            Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
+                            Carros[numero_do_carro].undraw()
+                            Menino.draw(win) 
+                            Carros[numero_do_carro].draw(win)
+
+                    colisao = Image(Centro_da_colisao, Colisoes[Proxima_Imagem_Colisao])
+                    colisao.draw(win)
+
+                    update(rate)
+
+                colisao.undraw()
+
+        else:
+            if pulando == True:
+                colisao = Image(Point(Centro_do_menino.getX(), Centro_do_menino.getY() + 40), Colisoes[Proxima_Imagem_Colisao])
+                colisao.draw(win)
+                Centro_da_colisao = colisao.getAnchor()
+
+            else:
+                colisao = Image(Point(Centro_do_menino.getX() + 20, Centro_do_menino.getY()), Colisoes[Proxima_Imagem_Colisao])
+                colisao.draw(win)
+                Centro_da_colisao = colisao.getAnchor()
 
             while Proxima_Imagem_Colisao < 11:
                 colisao.undraw()
                 Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
-
-                Menino.move(-20 + Proxima_Imagem_Colisao, -1 + (Proxima_Imagem_Colisao * 1.5))
-                Centro_do_menino = Menino.getAnchor()
-                Menino.undraw()
-                Menino = Image(Centro_do_menino, 'sprite_9.png')
-                Menino.draw(win)
-
                 colisao = Image(Centro_da_colisao, Colisoes[Proxima_Imagem_Colisao])
                 colisao.draw(win)
-
-                update(rate)
-
-            Menino.undraw()
-            Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
-            Menino.draw(win)
-
-            colisao.undraw()
-
-        else:
-            colisao = Image(Point(Centro_do_menino.getX() + 20, Centro_do_menino.getY()), Colisoes[Proxima_Imagem_Colisao])
-            colisao.draw(win)
-            Centro_da_colisao = colisao.getAnchor()
-
-            while Proxima_Imagem_Colisao < 5:
-                colisao.undraw()
-                Proxima_Imagem_Colisao = Proxima_Imagem_Colisao + 1
 
                 if Proxima_Imagem_Colisao == 5:
-                    if Menino_em_cima:
-                        Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
-                        Menino.draw(win)
-
-                    if not Menino_em_cima: 
-                        Menino = Image(Point(Centro_do_menino.getX() - 30, Centro_do_menino.getY()), 'sprite_8.png')
-                        Carros[numero_do_carro].undraw()
-                        Menino.draw(win) 
-                        Carros[numero_do_carro].draw(win)
-                    
-
-                colisao = Image(Centro_da_colisao, Colisoes[Proxima_Imagem_Colisao])
-                colisao.draw(win)
+                    Menino.undraw()
+                    Menino = Image(Point(Centro_do_menino.getX(), Centro_do_menino.getY() + 10), 'sprite_6.png')
+                    Menino.draw(win)
 
                 update(rate)
 
-            colisao.undraw()
+            colisao.undraw()         
 
         return Menino
     
-    def Colisao(Centro_do_menino, Carros):
+    def Colisao(Centro_do_menino, Carros, Cones):
         
         x = Centro_do_menino.getX()
         y = Centro_do_menino.getY()
@@ -303,11 +329,27 @@ def main():
 
             if x_carro >= -200 and x_carro <= 1200:
                 if (Menino_em_cima and Carro_em_cima) or (not Menino_em_cima and not Carro_em_cima):
-                    if x + 20 > x_carro - 165 and x - 20 < x_carro + 165 and y + 20 > y_carro - 85 and y - 20 < y_carro + 85:
+                    if (x + 20 > x_carro - 60 and x - 20 < x_carro + 165 and y + 40 > y_carro - 70 and y - 40 < y_carro + 55) or (x + 20 > x_carro - 165 and x - 20 < x_carro - 60 and y + 40 > y_carro - 15 and y - 40 < y_carro + 55):
                         Menino.undraw()
-                        return True, i
+                        return True, 'carro', Carro_em_cima, i
+
+        for i in range(0, len(Cones)):
+            x_cone = (Cones[i].getAnchor()).getX()
+            y_cone = (Cones[i].getAnchor()).getY()
+
+            if y_cone == 470:
+                Cone_em_cima = True
+            
+            else:
+                Cone_em_cima = False
+
+            if x_cone >= -50 and x_cone <= 1050:
+                if (Menino_em_cima and Cone_em_cima) or (not Menino_em_cima and not Cone_em_cima):
+                    if (x + 20 > x_cone - 25 and x - 20 < x_cone + 25 and y + 20 > y_cone - 9 and y - 20 < y_cone - 29):
+                        Menino.undraw()
+                        return True, 'cone', Cone_em_cima, None
         
-        return False, None
+        return False, None, None, None
 
     def Fim():
 
@@ -452,10 +494,10 @@ def main():
 
         key = win.checkKey()
 
-        colidiu, numero_do_carro = Colisao(Centro_do_menino, Carros)
+        colidiu, objeto, posicao, numero_do_carro = Colisao(Centro_do_menino, Carros, Cones)
 
         if colidiu:
-            Menino = Animacao_colisao(Menino, Centro_do_menino, Colisoes, False)
+            Menino = Animacao_colisao(Menino, Centro_do_menino, Colisoes, objeto, posicao, False)
 
             while tempo < 65:
                 tempo = tempo + 1
@@ -481,7 +523,7 @@ def main():
             Menino = Image(Point(300, 525), Menino_parado[0])
             Proxima_Imagem = 0
             Centro_do_menino = Menino.getAnchor()
-            colidiu, numero_do_carro = Colisao(Centro_do_menino, Carros)
+            colidiu, objeto, posicao, numero_do_carro = Colisao(Centro_do_menino, Carros, Cones)
             if not colidiu:
                 Menino.draw(win) 
             Menino_em_cima = False
@@ -625,4 +667,4 @@ def main():
 
     win.getMouse()    
 
-main()
+main()   
