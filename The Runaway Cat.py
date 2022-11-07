@@ -27,7 +27,7 @@ def main():
 
     Fundo = []
     
-    for i in range(0, 10):
+    for i in range(0, 8):
         Fundo.append(Image(Point(i * 4480 + 2240, 300), 'fundo.png'))
         Fundo[i].draw(win)
 
@@ -48,10 +48,10 @@ def main():
     Carro3 = ['Carro3.1.png', 'Carro3.2.png']
     Carro4 = ['Carro4.1.png', 'Carro4.2.png']
     Colisoes = ['colisao 1.png', 'colisao 1.png', 'colisao 2.png', 'colisao 2.png', 'colisao 3.png', 'colisao 3.png', 'colisao 4.png', 'colisao 4.png', 'colisao 5.png', 'colisao 5.png', 'colisao 6.png', 'colisao 6.png']
-    Lista_de_carros = [Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2]
+    Lista_de_carros = [Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4]
 
-    cones = random.sample(range(1200, Comprimento_do_fundo - 1400, 500), 55)
-    carros = random.sample(range(2000, int(Comprimento_do_fundo * 2.3), 1000), 50)
+    cones = random.sample(range(1200, Comprimento_do_fundo - 1400, 500), 44)
+    carros = random.sample(range(2000, int(Comprimento_do_fundo * 2.3), 1000), 40)
 
     Cones = []
     Carros = []
@@ -328,7 +328,7 @@ def main():
 
                     else:
                         Menino.undraw()
-                        Menino = Image(Point(Centro_do_menino.getX() + 30, 525), 'sprite_6.png')
+                        Menino = Image(Point(Centro_do_menino.getX() + 30 , 525), 'sprite_6.png')
                         Menino.draw(win)
 
                 update(rate)
