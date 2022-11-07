@@ -324,7 +324,19 @@ def main():
                     if posicao == True:
                         Menino.undraw()
                         Menino = Image(Point(Centro_do_menino.getX() + 30, 450), 'sprite_6.png')
-                        Menino.draw(win)
+                        Carro_na_frente = False
+
+                        for i in range(0, len(Carros)):
+                            x_carro = (Carros[i].getAnchor()).getX()
+
+                            if x_carro >= 50 and x_carro <= 550:
+                                Carros[i].undraw()
+                                Menino.draw(win)
+                                Carros[i].draw(win)
+                                Carro_na_frente = True
+
+                        if not Carro_na_frente:
+                            Menino.draw(win)
 
                     else:
                         Menino.undraw()
