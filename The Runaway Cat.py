@@ -16,7 +16,7 @@ def main():
 
     rate = 24
 
-    movimento = 15
+    movimento = 14
     movimento_carro = movimento*2.5
     
     while True:
@@ -51,7 +51,7 @@ def main():
     Lista_de_carros = [Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4, Carro1, Carro2, Carro3, Carro4]
 
     cones = random.sample(range(1200, Comprimento_do_fundo - 1400, 500), 44)
-    carros = random.sample(range(2000, int(Comprimento_do_fundo * 2.3), 1000), 40)
+    carros = random.sample(range(2000, int(Comprimento_do_fundo * 2.2), 1000), 40)
 
     Cones = []
     Carros = []
