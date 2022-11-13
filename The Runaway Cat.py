@@ -142,7 +142,7 @@ def main():
 
             Proxima_Imagem_Carro = (Proxima_Imagem_Carro + 1) % len(Carro1)
                 
-            for i in range(0, len(Carros)):
+            for i in range(0, len(Carros)): 
                 Carros[i].move(-movimento_carro, 0)
                 Centro_do_carro = Carros[i].getAnchor()
                 if Centro_do_carro.getX() > -200 and Centro_do_carro.getX() < 1200: 
